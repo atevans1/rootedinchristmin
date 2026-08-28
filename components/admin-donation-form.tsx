@@ -1,0 +1,5 @@
+"use client";
+import { useActionState } from "react";
+import { recordDonation, type DonationState } from "@/app/admin/giving/actions";
+const initial: DonationState = { ok: false, message: "" };
+export function AdminDonationForm() { const [state, action, pending] = useActionState(recordDonation, initial); return <form className="contact-form" action={action}><label>Donor name (optional)<input name="donor_name" /></label><label>Donor email (optional)<input name="donor_email" type="email" /></label><label>Amount<input name="amount" type="number" min="0" step="0.01" required /></label><label>Currency<input name="currency" placeholder="Enter currency code" required /></label><label>Donation date<input name="donation_date" type="date" required /></label><label>Purpose<input name="purpose" /></label><input type="hidden" name="method" value="manual" /><button className="button" disabled={pending} type="submit">{pending ? "Saving…" : "Save private record"}</button>{state.message && <p className={state.ok ? "form-success" : "form-error"} role="status">{state.message}</p>}</form>; }
