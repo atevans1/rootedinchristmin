@@ -103,6 +103,21 @@ h1,h2,h3 { font-family:var(--font-serif),serif; font-weight:500; line-height:1.0
 .notice-card strong { color:var(--forest); }
 .legal-content { padding-top:110px; padding-bottom:130px; max-width:900px; }
 .legal-content>.notice-card { margin:40px 0 25px; }
+.programme-list-page { padding-top:100px; padding-bottom:115px; }
+.programme-list-intro { max-width:690px; margin-bottom:48px; }
+.programme-list-intro h2 { font-size:clamp(38px,4vw,56px); }
+.programme-list-intro>p:last-child { color:var(--muted); margin-top:18px; }
+.programme-list { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+.programme-list-card { background:var(--cream); border:1px solid var(--line); padding:35px; min-height:270px; display:flex; flex-direction:column; justify-content:space-between; }
+.programme-list-card h3 { font-size:31px; margin:10px 0 13px; }
+.programme-list-card>div:first-child>p:last-child { color:var(--muted); margin:0; }
+.programme-list-footer { border-top:1px solid #dedacb; padding-top:18px; display:flex; align-items:center; justify-content:space-between; gap:16px; }
+.programme-list-footer span { color:#8c743c; font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:.1em; }
+.programme-list-footer a { color:var(--forest); display:flex; align-items:center; gap:7px; font-size:13px; font-weight:800; white-space:nowrap; }
+.programme-detail { display:grid; grid-template-columns:1.3fr .7fr; gap:12%; padding-top:100px; padding-bottom:120px; }
+.programme-detail h2 { font-size:clamp(34px,4vw,50px); max-width:740px; }
+.detail-copy { color:var(--muted); max-width:690px; margin-top:22px; }
+@media (max-width:760px) { .programme-list-page { padding-top:72px; padding-bottom:85px; } .programme-list { grid-template-columns:1fr; } .programme-list-card { padding:28px; } .programme-list-footer { display:block; } .programme-list-footer a { margin-top:14px; } .programme-detail { grid-template-columns:1fr; gap:40px; padding-top:72px; padding-bottom:85px; } }
 .admin-shell { min-height:80vh; background:#f4f6f1; }
 .admin-topbar { background:var(--forest-dark); color:white; }
 .admin-topbar-inner { min-height:76px; display:flex; align-items:center; justify-content:space-between; }
