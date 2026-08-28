@@ -15,6 +15,7 @@ pnpm dev
 - Do not invent ministry leaders, registration details, contact information, statistics, outcomes, or financial information.
 - Beneficiary and assistance information must remain private by default.
 - Operational forms must not ship until server-side validation, persistence, authorization, and abuse controls are implemented.
+- Basic private donation records are in scope; accounting, expenses, financial reporting, and active payment processing are not. Optional gateway fields are reserved for a future approved integration.
 
 ## Current scope
 
