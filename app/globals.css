@@ -245,6 +245,15 @@ h1,h2,h3 { font-family:var(--font-serif),serif; font-weight:500; line-height:1.0
 .admin-module-role { color:#8c743c; font-size:9px; text-transform:uppercase; letter-spacing:.14em; font-weight:800; }
 .admin-module h3 { font-size:26px; margin:12px 0 8px; }
 .admin-module p { color:var(--muted); font-size:14px; margin:0; }
+.admin-login-page { min-height:78vh; display:grid; place-items:center; background:var(--forest-dark); padding:60px 16px; }
+.admin-login-card { width:min(100%,500px); background:var(--paper); padding:48px; border-top:4px solid var(--gold); }
+.admin-login-card h1 { font-size:54px; }
+.admin-login-card>p:not(.eyebrow):not(.admin-login-note) { color:var(--muted); margin:14px 0 28px; }
+.admin-login-form { display:grid; gap:18px; }
+.admin-login-form label { display:grid; gap:7px; color:var(--forest); font-size:12px; font-weight:800; }
+.admin-login-form input { border:1px solid #ccd7ce; padding:12px; font:inherit; }
+.admin-login-note { color:#7a887f; font-size:12px; margin:24px 0 10px; }
+@media (max-width:760px) { .admin-login-card { padding:34px 24px; } .admin-login-card h1 { font-size:45px; } }
 .module-state { color:var(--leaf); display:flex; align-items:center; gap:7px; margin-top:auto; padding-top:22px; font-size:12px; font-weight:800; }
 @media (max-width:760px) { .admin-topbar-inner { min-height:70px; } .admin-status { display:none; } .admin-content { padding-top:60px; } .admin-heading { display:block; } .admin-heading>.arrow-link { margin-top:22px; } .admin-module-grid { grid-template-columns:1fr; } }
 @media (max-width:1080px) { .desktop-nav { display:none; } .menu-button { display:grid; } .mobile-panel { display:block; visibility:hidden; opacity:0; position:fixed; inset:82px 0 0; background:var(--paper); transform:translateY(-10px); transition:.2s; } .mobile-panel.is-open { visibility:visible; opacity:1; transform:none; } .mobile-panel nav { width:min(680px,calc(100% - 48px)); margin:auto; padding:28px 0; display:flex; flex-direction:column; } .mobile-panel a { padding:13px 4px; font-family:var(--font-serif); font-size:22px; border-bottom:1px solid var(--line); } }
