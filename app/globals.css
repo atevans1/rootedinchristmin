@@ -261,6 +261,9 @@ h1,h2,h3 { font-family:var(--font-serif),serif; font-weight:500; line-height:1.0
 .content-section-card h2 { font-size:27px; margin:17px 0 9px; }
 .content-section-card p { color:var(--muted); font-size:14px; margin:0; }
 .content-section-card a { display:flex; align-items:center; gap:7px; color:var(--forest); font-size:12px; font-weight:800; margin-top:auto; padding-top:20px; }
+.admin-form-layout { display:grid; grid-template-columns:.7fr 1.3fr; gap:12%; align-items:start; }
+.admin-form-layout h2 { font-size:42px; }
+@media (max-width:760px) { .admin-form-layout { grid-template-columns:1fr; gap:35px; } }
 @media (max-width:760px) { .content-section-grid { grid-template-columns:1fr; } }
 @media (max-width:760px) { .queue-grid { grid-template-columns:1fr; } }
 @media (max-width:760px) { .role-grid { grid-template-columns:1fr; } }
