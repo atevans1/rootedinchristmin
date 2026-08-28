@@ -1,0 +1,3 @@
+export const adminRoles = ["administrator", "content_manager", "programme_manager", "volunteer_manager", "beneficiary_manager", "finance_manager"] as const;
+export type AdminRole = typeof adminRoles[number];
+export const roleDescriptions: Record<AdminRole | "super_admin", string> = { super_admin: "Full ministry and access control authority", administrator: "Runs approved site operations", content_manager: "Manages stories, gallery, and public content", programme_manager: "Manages programmes and projects", volunteer_manager: "Manages volunteer applications", beneficiary_manager: "Manages private assistance workflows", finance_manager: "Manages approved giving records" };

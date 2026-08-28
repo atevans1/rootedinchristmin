@@ -243,6 +243,13 @@ h1,h2,h3 { font-family:var(--font-serif),serif; font-weight:500; line-height:1.0
 .admin-module-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
 .admin-module { background:white; border:1px solid #e1e7df; padding:27px; min-height:220px; display:flex; flex-direction:column; }
 .admin-module-role { color:#8c743c; font-size:9px; text-transform:uppercase; letter-spacing:.14em; font-weight:800; }
+.role-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+.role-card { background:white; border:1px solid #e1e7df; border-top:3px solid #cbd8cf; padding:25px; min-height:180px; }
+.role-card-primary { border-top-color:var(--gold); background:var(--cream); }
+.role-card span { color:#8c743c; font-size:9px; text-transform:uppercase; letter-spacing:.14em; font-weight:800; }
+.role-card h3 { font-size:24px; margin:18px 0 8px; text-transform:capitalize; }
+.role-card p { color:var(--muted); font-size:13px; margin:0; }
+@media (max-width:760px) { .role-grid { grid-template-columns:1fr; } }
 .admin-module h3 { font-size:26px; margin:12px 0 8px; }
 .admin-module p { color:var(--muted); font-size:14px; margin:0; }
 .admin-login-page { min-height:78vh; display:grid; place-items:center; background:var(--forest-dark); padding:60px 16px; }
