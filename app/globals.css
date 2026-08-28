@@ -249,6 +249,13 @@ h1,h2,h3 { font-family:var(--font-serif),serif; font-weight:500; line-height:1.0
 .role-card span { color:#8c743c; font-size:9px; text-transform:uppercase; letter-spacing:.14em; font-weight:800; }
 .role-card h3 { font-size:24px; margin:18px 0 8px; text-transform:capitalize; }
 .role-card p { color:var(--muted); font-size:13px; margin:0; }
+.queue-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+.queue-card { background:#fff; border:1px solid #e1e7df; padding:27px; min-height:230px; display:flex; flex-direction:column; }
+.queue-card>span { color:#8c743c; font-size:9px; text-transform:uppercase; letter-spacing:.12em; font-weight:800; }
+.queue-card h2 { font-size:27px; margin:18px 0 10px; }
+.queue-card p { color:var(--muted); font-size:14px; margin:0; }
+.queue-state { color:var(--leaf); font-size:12px; font-weight:800; margin-top:auto; padding-top:22px; }
+@media (max-width:760px) { .queue-grid { grid-template-columns:1fr; } }
 @media (max-width:760px) { .role-grid { grid-template-columns:1fr; } }
 .admin-module h3 { font-size:26px; margin:12px 0 8px; }
 .admin-module p { color:var(--muted); font-size:14px; margin:0; }
