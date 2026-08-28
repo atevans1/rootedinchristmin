@@ -1,0 +1,5 @@
+"use client";
+import { useActionState } from "react";
+import { submitContact, type ContactState } from "@/app/contact/actions";
+const initial: ContactState = { ok: false, message: "" };
+export function ContactForm() { const [state, action, pending] = useActionState(submitContact, initial); return <form className="contact-form" action={action}><label>Name<input name="name" required maxLength={120} autoComplete="name" /></label><label>Email<input name="email" type="email" required maxLength={254} autoComplete="email" /></label><label>Enquiry type<select name="enquiry_type" defaultValue="general"><option value="general">General enquiry</option><option value="programme">Programme enquiry</option><option value="giving">Giving enquiry</option><option value="ministry">Ministry enquiry</option></select></label><label>Message<textarea name="message" required minLength={10} maxLength={5000} rows={6} /></label><button className="button" type="submit" disabled={pending}>{pending ? "Sending…" : "Send enquiry"}</button>{state.message && <p className={state.ok ? "form-success" : "form-error"} role="status">{state.message}</p>}</form>; }
