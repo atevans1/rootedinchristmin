@@ -255,6 +255,13 @@ h1,h2,h3 { font-family:var(--font-serif),serif; font-weight:500; line-height:1.0
 .queue-card h2 { font-size:27px; margin:18px 0 10px; }
 .queue-card p { color:var(--muted); font-size:14px; margin:0; }
 .queue-state { color:var(--leaf); font-size:12px; font-weight:800; margin-top:auto; padding-top:22px; }
+.content-section-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+.content-section-card { background:#fff; border:1px solid #e1e7df; padding:27px; min-height:220px; display:flex; flex-direction:column; }
+.content-section-card>span { color:#8c743c; font-size:9px; text-transform:uppercase; letter-spacing:.12em; font-weight:800; }
+.content-section-card h2 { font-size:27px; margin:17px 0 9px; }
+.content-section-card p { color:var(--muted); font-size:14px; margin:0; }
+.content-section-card a { display:flex; align-items:center; gap:7px; color:var(--forest); font-size:12px; font-weight:800; margin-top:auto; padding-top:20px; }
+@media (max-width:760px) { .content-section-grid { grid-template-columns:1fr; } }
 @media (max-width:760px) { .queue-grid { grid-template-columns:1fr; } }
 @media (max-width:760px) { .role-grid { grid-template-columns:1fr; } }
 .admin-module h3 { font-size:26px; margin:12px 0 8px; }
