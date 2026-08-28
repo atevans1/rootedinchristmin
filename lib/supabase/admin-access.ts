@@ -1,0 +1,1 @@
+export const adminAccess = { "/admin/content": ["super_admin", "administrator", "content_manager", "programme_manager"], "/admin/enquiries": ["super_admin", "administrator", "volunteer_manager", "content_manager", "beneficiary_manager"], "/admin/users": ["super_admin"] } as const;
