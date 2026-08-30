@@ -1,4 +1,5 @@
 import { createServerClient } from "@supabase/ssr";
+import type { CookieOptions } from "@supabase/ssr";
 import { cookies } from "next/headers";
 
 export async function createSupabaseServerClient() {
@@ -9,7 +10,7 @@ export async function createSupabaseServerClient() {
   return createServerClient(url, anonKey, {
     cookies: {
       getAll: () => cookieStore.getAll(),
-      setAll(values: Array<{ name: string; value: string; options?: any }>) { try { values.forEach(({ name, value, options }) => cookieStore.set(name, value, options)); } catch { /* server components cannot always write cookies */ } },
+      setAll(values: Array<{ name: string; value: string; options: CookieOptions }>) { try { values.forEach(({ name, value, options }) => cookieStore.set(name, value, options)); } catch { /* server components cannot always write cookies */ } },
     },
   });
 }
