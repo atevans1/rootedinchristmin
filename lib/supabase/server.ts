@@ -9,7 +9,7 @@ export async function createSupabaseServerClient() {
   return createServerClient(url, anonKey, {
     cookies: {
       getAll: () => cookieStore.getAll(),
-      setAll(values) { try { values.forEach(({ name, value, options }) => cookieStore.set(name, value, options)); } catch { /* server components cannot always write cookies */ } },
+      setAll(values: Array<{ name: string; value: string; options?: any }>) { try { values.forEach(({ name, value, options }) => cookieStore.set(name, value, options)); } catch { /* server components cannot always write cookies */ } },
     },
   });
 }
