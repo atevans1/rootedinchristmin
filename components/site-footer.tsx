@@ -15,7 +15,7 @@ export function SiteFooter() {
         <div><h2>Connect</h2><Link href="/get-involved">Volunteer</Link><Link href="/give">Give</Link><Link href="/assistance">Request assistance</Link><Link href="/contact">Contact</Link></div>
         <div><h2>Trust</h2><Link href="/privacy">Privacy policy</Link><Link href="/safeguarding">Safeguarding</Link><Link href="/terms">Terms & conditions</Link></div>
       </div>
-      <div className="container footer-bottom"><p>© {new Date().getFullYear()} Rooted In Christ Ministry. All rights reserved.</p><p>Faith · Compassion · Service</p></div>
+      <div className="container footer-bottom"><p>© {new Date().getFullYear()} Rooted In Christ Ministry. All rights reserved.</p><p>Faith · Compassion · Service</p><p>Designed by <a href="https://dtplay.site/" target="_blank" rel="noreferrer">LOICodeHub</a></p></div>
     </footer>
   );
 }
