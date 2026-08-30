@@ -8,7 +8,7 @@ const sans = DM_Sans({ subsets: ["latin"], variable: "--font-sans", display: "sw
 const serif = Lora({ subsets: ["latin"], variable: "--font-serif", display: "swap" });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://rootedinchristministry.org"),
+  metadataBase: new URL("https://rootedinchristmin.com"),
   title: { default: "Rooted In Christ Ministry", template: "%s | Rooted In Christ Ministry" },
   description: "A Christian ministry committed to spiritual growth, compassionate service, and flourishing communities.",
 };
