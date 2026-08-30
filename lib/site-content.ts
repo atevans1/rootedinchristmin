@@ -49,14 +49,14 @@ export const programmeCategories = [
 ];
 
 export const publicPages: Record<string, { eyebrow: string; title: string; description: string }> = {
-  about: { eyebrow: "Our identity", title: "Rooted in faith. Present in community.", description: "This page will share the ministry's verified story, mission, vision, values, leadership, and communities served once those details are supplied." },
+  about: { eyebrow: "Our identity", title: "Rooted in faith. Present in community.", description: "Rooted In Christ Ministry connects spiritual growth with compassionate service, practical support, and hope-filled community relationships." },
   ministries: { eyebrow: "Our ministries", title: "Helping people grow in Christ", description: "Explore ministry areas designed to nurture faith, discipleship, Christian education, counselling, and service." },
-  programmes: { eyebrow: "Programmes", title: "Practical pathways to lasting impact", description: "This flexible programme area will present active ministry and humanitarian work as administrators publish verified information." },
-  projects: { eyebrow: "Projects & impact", title: "Transparent work. Meaningful outcomes.", description: "Current, upcoming, and completed projects will appear here with verified objectives, locations, updates, and impact information." },
+  programmes: { eyebrow: "Programmes", title: "Practical pathways to lasting impact", description: "Our programmes bring faith, learning, empowerment, humanitarian care, and community support together in practical ways." },
+  projects: { eyebrow: "Projects & impact", title: "Transparent work. Meaningful outcomes.", description: "We share clear project information so supporters and community members can understand the work, its purpose, and its progress." },
   "get-involved": { eyebrow: "Get involved", title: "There is a place for you to serve", description: "Discover future opportunities to volunteer, partner, support a programme, or stand with the ministry in prayer." },
-  stories: { eyebrow: "Stories", title: "Hope taking root", description: "Approved ministry news, testimonies, outreach reports, and project updates will be published here." },
-  gallery: { eyebrow: "Impact gallery", title: "Moments of faith and service", description: "Verified, consent-aware photographs from outreach, training, events, and community activities will be managed here." },
-  give: { eyebrow: "Give", title: "Support the mission with confidence", description: "Verified giving information and approved campaigns will appear here when the ministry supplies its official details. No payment provider is connected yet." },
+  stories: { eyebrow: "Stories", title: "Hope taking root", description: "This is a place for approved ministry news, testimonies, outreach reports, and project updates shared with care and consent." },
+  gallery: { eyebrow: "Impact gallery", title: "Moments of faith and service", description: "See approved images from ministry activities, community service, training, and gatherings, shared with consent." },
+  give: { eyebrow: "Give", title: "Support the mission with confidence", description: "Giving is handled responsibly and manually. Verified payment-app details will be added when officially approved by the ministry." },
   assistance: { eyebrow: "Request assistance", title: "A private path to ask for support", description: "A secure, confidential assistance-request workflow will be implemented in a later phase. Requests will never be published automatically." },
-  contact: { eyebrow: "Contact", title: "We would be glad to hear from you", description: "Official ministry contact details and secure enquiry forms will appear here once verified information is supplied." },
+  contact: { eyebrow: "Contact", title: "We would be glad to hear from you", description: "Reach out with a general question about the ministry, its programmes, volunteering, partnership, or giving." },
 };
