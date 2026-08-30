@@ -3,10 +3,10 @@ import { createServerClient } from "@supabase/ssr";
 import type { CookieOptions } from "@supabase/ssr";
 
 const access: Record<string, string[]> = {
-  "/admin/users": ["super_admin"],
-  "/admin/giving": ["super_admin", "administrator", "finance_manager"],
-  "/admin/enquiries": ["super_admin", "administrator", "content_manager", "volunteer_manager", "beneficiary_manager"],
-  "/admin/content": ["super_admin", "administrator", "content_manager", "programme_manager"],
+  "/admin/users": ["owner"],
+  "/admin/giving": ["owner", "ministry_admin"],
+  "/admin/enquiries": ["owner", "ministry_admin", "pastor", "prayer_team"],
+  "/admin/content": ["owner", "ministry_admin", "editor", "media_manager"],
 };
 
 export async function middleware(request: NextRequest) {
@@ -17,9 +17,9 @@ export async function middleware(request: NextRequest) {
   const supabase = createServerClient(url, anonKey, { cookies: { getAll: () => request.cookies.getAll(), setAll(values: Array<{ name: string; value: string; options: CookieOptions }>) { values.forEach(({ name, value, options }) => { request.cookies.set(name, value); response.cookies.set(name, value, options); }); } } });
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) return NextResponse.redirect(new URL("/admin/login", request.url));
-  const { data: profile } = await supabase.from("profiles").select("role").eq("id", user.id).maybeSingle();
+  const { data: membership } = await supabase.schema("rooted_in_christ").from("members").select("role,status").eq("user_id", user.id).eq("status", "active").maybeSingle();
   const matched = Object.entries(access).find(([path]) => request.nextUrl.pathname === path || request.nextUrl.pathname.startsWith(`${path}/`));
-  if (matched && (!profile?.role || !matched[1].includes(profile.role))) return NextResponse.redirect(new URL("/admin/unauthorized", request.url));
+  if (matched && (!membership?.role || !matched[1].includes(membership.role))) return NextResponse.redirect(new URL("/admin/unauthorized", request.url));
   return response;
 }
 
