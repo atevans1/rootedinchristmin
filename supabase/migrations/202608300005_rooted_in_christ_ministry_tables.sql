@@ -24,6 +24,19 @@ create table rooted_in_christ.prayer_requests (
   status rooted_in_christ.review_status not null default 'new', internal_notes text,
   created_at timestamptz not null default now(), updated_at timestamptz not null default now()
 );
+create table rooted_in_christ.volunteer_applications (
+  id uuid primary key default gen_random_uuid(), full_name text not null, email text not null, phone text,
+  location text, skills text, availability text, areas_of_interest text, profession text,
+  preferred_programme text, previous_experience text, additional_notes text,
+  status rooted_in_christ.review_status not null default 'new', internal_notes text,
+  created_at timestamptz not null default now(), updated_at timestamptz not null default now()
+);
+create table rooted_in_christ.partnership_enquiries (
+  id uuid primary key default gen_random_uuid(), organisation_name text not null, contact_name text,
+  email text not null, phone text, partnership_type text, area_of_interest text, message text not null,
+  status rooted_in_christ.review_status not null default 'new', internal_notes text,
+  created_at timestamptz not null default now(), updated_at timestamptz not null default now()
+);
 create table rooted_in_christ.donation_records (
   id uuid primary key default gen_random_uuid(), donor_name text, donor_email text,
   amount numeric(12,2), currency text, received_at timestamptz, method text, gateway text,
@@ -35,6 +48,8 @@ alter table rooted_in_christ.programmes enable row level security;
 alter table rooted_in_christ.events enable row level security;
 alter table rooted_in_christ.contact_enquiries enable row level security;
 alter table rooted_in_christ.prayer_requests enable row level security;
+alter table rooted_in_christ.volunteer_applications enable row level security;
+alter table rooted_in_christ.partnership_enquiries enable row level security;
 alter table rooted_in_christ.donation_records enable row level security;
 
 create policy "published programmes are public" on rooted_in_christ.programmes for select using (status = 'published');
@@ -45,9 +60,13 @@ create policy "authorized staff manage enquiries" on rooted_in_christ.contact_en
 create policy "authorized prayer team manage requests" on rooted_in_christ.prayer_requests for all using (rooted_in_christ.has_role('prayer_team')) with check (rooted_in_christ.has_role('prayer_team'));
 create policy "public may submit contact enquiries" on rooted_in_christ.contact_enquiries for insert to anon, authenticated with check (true);
 create policy "public may submit prayer requests" on rooted_in_christ.prayer_requests for insert to anon, authenticated with check (true);
+create policy "public may submit volunteer applications" on rooted_in_christ.volunteer_applications for insert to anon, authenticated with check (true);
+create policy "public may submit partnership enquiries" on rooted_in_christ.partnership_enquiries for insert to anon, authenticated with check (true);
+create policy "authorized staff manage volunteer applications" on rooted_in_christ.volunteer_applications for all using (rooted_in_christ.has_role('ministry_admin')) with check (rooted_in_christ.has_role('ministry_admin'));
+create policy "authorized staff manage partnership enquiries" on rooted_in_christ.partnership_enquiries for all using (rooted_in_christ.has_role('ministry_admin')) with check (rooted_in_christ.has_role('ministry_admin'));
 create policy "authorized staff manage giving" on rooted_in_christ.donation_records for all using (rooted_in_christ.has_role('ministry_admin')) with check (rooted_in_christ.has_role('ministry_admin'));
 
 grant usage on schema rooted_in_christ to anon, authenticated;
 grant select on rooted_in_christ.programmes, rooted_in_christ.events to anon, authenticated;
 grant insert on rooted_in_christ.contact_enquiries, rooted_in_christ.prayer_requests to anon, authenticated;
-grant all on rooted_in_christ.programmes, rooted_in_christ.events, rooted_in_christ.contact_enquiries, rooted_in_christ.prayer_requests, rooted_in_christ.donation_records to authenticated;
+grant all on rooted_in_christ.programmes, rooted_in_christ.events, rooted_in_christ.contact_enquiries, rooted_in_christ.prayer_requests, rooted_in_christ.volunteer_applications, rooted_in_christ.partnership_enquiries, rooted_in_christ.donation_records to authenticated;
