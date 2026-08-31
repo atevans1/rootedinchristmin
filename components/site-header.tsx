@@ -4,9 +4,12 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { navigation } from "@/lib/site-content";
 import { Icon } from "./icon";
+import { createSupabaseBrowserClient } from "@/lib/supabase/browser";
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
+  const [signedIn, setSignedIn] = useState(false);
+  useEffect(() => { const supabase = createSupabaseBrowserClient(); if (!supabase) return; supabase.auth.getUser().then(({ data }) => setSignedIn(Boolean(data.user))); const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => setSignedIn(Boolean(session?.user))); return () => listener.subscription.unsubscribe(); }, []);
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
     return () => { document.body.style.overflow = ""; };
@@ -23,7 +26,7 @@ export function SiteHeader() {
           {navigation.map((item) => <Link href={item.href} key={item.href}>{item.label}</Link>)}
         </nav>
         <div className="header-actions">
-          <Link className="text-link" href="/admin/login">Login</Link>
+          <Link className="text-link" href={signedIn ? "/admin/logout" : "/admin/login"}>{signedIn ? "Logout" : "Login"}</Link>
           <Link className="text-link desktop-give" href="/give">Give</Link>
           <Link className="button button-small" href="/assistance">Request assistance</Link>
           <button className="menu-button" type="button" aria-label={open ? "Close navigation" : "Open navigation"} aria-expanded={open} aria-controls="mobile-navigation" onClick={() => setOpen(!open)}>
@@ -38,7 +41,7 @@ export function SiteHeader() {
           <Link href="/give" onClick={() => setOpen(false)}>Give</Link>
           <Link href="/assistance" onClick={() => setOpen(false)}>Request assistance</Link>
           <Link href="/contact" onClick={() => setOpen(false)}>Contact</Link>
-          <Link href="/admin/login" onClick={() => setOpen(false)}>Login</Link>
+          <Link href={signedIn ? "/admin/logout" : "/admin/login"} onClick={() => setOpen(false)}>{signedIn ? "Logout" : "Login"}</Link>
         </nav>
       </div>
     </header>
