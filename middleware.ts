@@ -17,9 +17,10 @@ export async function middleware(request: NextRequest) {
   const supabase = createServerClient(url, anonKey, { cookies: { getAll: () => request.cookies.getAll(), setAll(values: Array<{ name: string; value: string; options: CookieOptions }>) { values.forEach(({ name, value, options }) => { request.cookies.set(name, value); response.cookies.set(name, value, options); }); } } });
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) return NextResponse.redirect(new URL("/admin/login", request.url));
-  const { data: role } = await supabase.rpc("rooted_in_christ_member_role");
+  const { data: role, error: roleError } = await supabase.rpc("rooted_in_christ_member_role");
+  const currentRole = typeof role === "string" ? role.trim() : "";
   const matched = Object.entries(access).find(([path]) => request.nextUrl.pathname === path || request.nextUrl.pathname.startsWith(`${path}/`));
-  if (matched && (!role || !matched[1].includes(role))) return NextResponse.redirect(new URL("/admin/unauthorized", request.url));
+  if (matched && (roleError || !matched[1].includes(currentRole))) return NextResponse.redirect(new URL("/admin/unauthorized", request.url));
   return response;
 }
 
