@@ -4,6 +4,7 @@ import { adminRoles, roleDescriptions } from "@/lib/supabase/roles";
 import { inviteAdministrator } from "./actions";
 
 async function submitInvitation(formData: FormData): Promise<void> {
+  "use server";
   await inviteAdministrator(formData);
 }
 
