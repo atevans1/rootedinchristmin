@@ -23,6 +23,7 @@ export function SiteHeader() {
           {navigation.map((item) => <Link href={item.href} key={item.href}>{item.label}</Link>)}
         </nav>
         <div className="header-actions">
+          <Link className="text-link" href="/admin/login">Login</Link>
           <Link className="text-link desktop-give" href="/give">Give</Link>
           <Link className="button button-small" href="/assistance">Request assistance</Link>
           <button className="menu-button" type="button" aria-label={open ? "Close navigation" : "Open navigation"} aria-expanded={open} aria-controls="mobile-navigation" onClick={() => setOpen(!open)}>
@@ -37,6 +38,7 @@ export function SiteHeader() {
           <Link href="/give" onClick={() => setOpen(false)}>Give</Link>
           <Link href="/assistance" onClick={() => setOpen(false)}>Request assistance</Link>
           <Link href="/contact" onClick={() => setOpen(false)}>Contact</Link>
+          <Link href="/admin/login" onClick={() => setOpen(false)}>Login</Link>
         </nav>
       </div>
     </header>
