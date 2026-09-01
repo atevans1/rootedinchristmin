@@ -26,6 +26,7 @@ export function SiteHeader() {
           {navigation.map((item) => <Link href={item.href} key={item.href}>{item.label}</Link>)}
         </nav>
         <div className="header-actions">
+          {signedIn && <Link className="text-link" href="/admin">Dashboard</Link>}
           <Link className="text-link" href={signedIn ? "/admin/logout" : "/admin/login"}>{signedIn ? "Logout" : "Login"}</Link>
           <Link className="text-link desktop-give" href="/give">Give</Link>
           <Link className="button button-small" href="/assistance">Request assistance</Link>
@@ -41,6 +42,7 @@ export function SiteHeader() {
           <Link href="/give" onClick={() => setOpen(false)}>Give</Link>
           <Link href="/assistance" onClick={() => setOpen(false)}>Request assistance</Link>
           <Link href="/contact" onClick={() => setOpen(false)}>Contact</Link>
+          {signedIn && <Link href="/admin" onClick={() => setOpen(false)}>Admin dashboard</Link>}
           <Link href={signedIn ? "/admin/logout" : "/admin/login"} onClick={() => setOpen(false)}>{signedIn ? "Logout" : "Login"}</Link>
         </nav>
       </div>
