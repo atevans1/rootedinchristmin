@@ -6,3 +6,13 @@ export async function publishedRows(table: string) {
   const { data, error } = await supabase.from(table).select("*").eq("status", "published").order("created_at", { ascending: false });
   return error || !data ? [] : (data as Record<string, unknown>[]);
 }
+
+export async function publishedProgrammes() {
+  const rows = await publishedRows("programmes");
+  return rows.map((row) => ({ slug: String(row.slug || row.id), title: String(row.title || "Programme"), category: String(row.category || "Ministry programme"), summary: String(row.description || ""), description: String(row.description || ""), status: "Published" }));
+}
+
+export async function publishedProjects() {
+  const rows = await publishedRows("projects");
+  return rows.map((row) => ({ slug: String(row.slug || row.id), title: String(row.title || "Project"), status: "Published", summary: String(row.description || ""), location: String(row.location || ""), programme: "Rooted In Christ Ministry" }));
+}
