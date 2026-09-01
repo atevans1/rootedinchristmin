@@ -3,6 +3,16 @@ do $$ begin
 exception when duplicate_object then null;
 end $$;
 
+do $$ begin
+  create type rooted_in_christ.member_role as enum ('owner','ministry_admin','pastor','editor','media_manager','prayer_team','viewer');
+exception when duplicate_object then null;
+end $$;
+
+create or replace function rooted_in_christ.has_role(required_role rooted_in_christ.member_role)
+returns boolean language sql stable security definer set search_path = rooted_in_christ, pg_temp as $$
+  select exists (select 1 from rooted_in_christ.members where user_id = auth.uid() and status = 'active' and (role = required_role or role = 'owner'));
+$$;
+
 create table if not exists rooted_in_christ.posts (
   id uuid primary key default gen_random_uuid(), title text not null, slug text not null unique,
   category text, content text not null, status rooted_in_christ.record_status not null default 'draft',
