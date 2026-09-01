@@ -1,7 +1,8 @@
 "use server";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
-export async function inviteAdministrator(formData: FormData) {
+export type InvitationState = { ok: boolean; message: string };
+export async function inviteAdministrator(_previous: InvitationState, formData: FormData): Promise<InvitationState> {
   const email = String(formData.get("email") || "").trim().toLowerCase();
   if (!/^\S+@\S+\.\S+$/.test(email)) return { ok: false, message: "Enter a valid email address." };
   const supabase = await createSupabaseServerClient(); const admin = createSupabaseAdminClient();
