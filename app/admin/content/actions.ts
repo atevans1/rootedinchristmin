@@ -19,3 +19,11 @@ export async function deleteContent(table: string, id: string): Promise<ContentA
   const { error } = await supabase.from(table).delete().eq("id", id);
   return error ? { ok: false, message: "We could not delete this content." } : { ok: true, message: "Content deleted successfully." };
 }
+
+export async function togglePinnedPost(id: string, pinned: boolean): Promise<ContentActionState> {
+  if (!id) return { ok: false, message: "Invalid post." };
+  const supabase = await createRootedSupabaseServerClient();
+  if (!supabase) return { ok: false, message: "Secure content is not configured." };
+  const { error } = await supabase.from("posts").update({ pinned }).eq("id", id);
+  return error ? { ok: false, message: error.message.includes("four") ? error.message : "We could not update the pinned posts." } : { ok: true, message: pinned ? "Post pinned." : "Post unpinned." };
+}
