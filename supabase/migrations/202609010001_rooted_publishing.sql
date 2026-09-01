@@ -1,3 +1,8 @@
+do $$ begin
+  create type rooted_in_christ.record_status as enum ('draft','published','archived');
+exception when duplicate_object then null;
+end $$;
+
 create table if not exists rooted_in_christ.posts (
   id uuid primary key default gen_random_uuid(), title text not null, slug text not null unique,
   category text, content text not null, status rooted_in_christ.record_status not null default 'draft',
