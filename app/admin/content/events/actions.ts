@@ -12,6 +12,6 @@ export async function createEvent(_previous: EventState, formData: FormData): Pr
   const rooted = await createRootedSupabaseServerClient();
   if (!supabase || !rooted) return { ok: false, message: "The secure content service is being prepared. Please try again later." };
   const { data: { user } } = await supabase.auth.getUser();
-  const { error } = await rooted.from("events").insert({ title, description, start_at: date, created_by: user?.id });
-  return error ? { ok: false, message: "We could not save this event. Please check the details and try again." } : { ok: true, message: "Event saved as a draft." };
+  const { error } = await rooted.from("events").insert({ title, description, start_at: date, status: "published", created_by: user?.id });
+  return error ? { ok: false, message: "We could not publish this event. Please check the details and try again." } : { ok: true, message: "Event published successfully." };
 }
