@@ -5,6 +5,7 @@ export async function createRootedSupabaseServerClient() {
   const client = await createSupabaseServerClient();
   if (!client) return null;
   const rooted = client.schema("rooted_in_christ");
-  // Schema clients share the parent client's Auth API at runtime.
+  // Keep Auth available while routing database calls to the isolated schema.
+  Object.defineProperty(rooted, "auth", { value: client.auth, enumerable: false });
   return rooted as unknown as typeof client;
 }
