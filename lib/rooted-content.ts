@@ -21,3 +21,8 @@ export async function publishedGalleryItems() {
   const rows = await publishedRows("gallery_items");
   return rows.map((row) => ({ title: String(row.title || "Ministry moment"), category: "Ministry gallery", state: String(row.caption || "Published ministry image"), storagePath: String(row.storage_path || "") }));
 }
+
+export function publicMediaUrl(path: string) {
+  const base = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  return base && path ? `${base}/storage/v1/object/public/ministry-media/${path}` : "";
+}
