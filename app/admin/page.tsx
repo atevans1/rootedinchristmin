@@ -2,8 +2,8 @@ import Link from "next/link";
 import { Icon } from "@/components/icon";
 
 const modules = [
-  ["Stories & posts", "Draft and publish approved ministry content", "content_manager", "/admin/content/stories"],
-  ["Gallery", "Manage consented ministry media", "content_manager", "/admin/content/gallery"],
+  ["Stories & posts", "Publish ministry stories and blog posts", "content_manager", "/admin/content/stories"],
+  ["Gallery", "Publish and manage gallery images", "content_manager", "/admin/content/gallery"],
   ["Enquiries", "Review private contact and partnership messages", "ministry_admin", "/admin/enquiries"],
 ];
 
