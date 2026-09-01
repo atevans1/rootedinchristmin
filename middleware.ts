@@ -4,9 +4,9 @@ import type { CookieOptions } from "@supabase/ssr";
 
 const access: Record<string, string[]> = {
   "/admin/users": ["owner"],
-  "/admin/giving": ["owner", "administrator", "finance_manager"],
-  "/admin/enquiries": ["owner", "administrator", "beneficiary_manager", "volunteer_manager", "content_manager"],
-  "/admin/content": ["owner", "administrator", "content_manager", "programme_manager"],
+  "/admin/giving": ["owner", "super_admin", "administrator", "finance_manager", "ministry_admin"],
+  "/admin/enquiries": ["owner", "super_admin", "administrator", "beneficiary_manager", "volunteer_manager", "content_manager", "ministry_admin", "pastor", "prayer_team"],
+  "/admin/content": ["owner", "super_admin", "administrator", "content_manager", "programme_manager", "ministry_admin", "editor", "media_manager"],
 };
 
 export async function middleware(request: NextRequest) {
