@@ -2,11 +2,8 @@ import Link from "next/link";
 import { Icon } from "@/components/icon";
 
 const modules = [
-  ["Programmes", "Create and manage verified programme records", "programme_manager", "/admin/content/programmes"],
-  ["Projects & impact", "Track objectives, updates, and outcomes", "programme_manager", "/admin/content/projects"],
   ["Stories & posts", "Draft and publish approved ministry content", "content_manager", "/admin/content/stories"],
   ["Gallery", "Manage consented ministry media", "content_manager", "/admin/content/gallery"],
-  ["Events", "Draft confirmed ministry gatherings", "content_manager", "/admin/content/events"],
   ["Enquiries", "Review private contact and partnership messages", "ministry_admin", "/admin/enquiries"],
 ];
 
