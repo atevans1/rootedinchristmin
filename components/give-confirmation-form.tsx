@@ -1,0 +1,5 @@
+"use client";
+import { useActionState } from "react";
+import { submitDonation, type GiveState } from "@/app/give/actions";
+const initial: GiveState = { ok: false, message: "" };
+export function GiveConfirmationForm() { const [state, action, pending] = useActionState(submitDonation, initial); return <form className="contact-form" action={action}><label>Name (optional)<input name="donor_name" /></label><label>Email (optional)<input name="donor_email" type="email" /></label><label>Amount<input name="amount" type="number" min="0.01" step="0.01" required /></label><label>Currency<input name="currency" placeholder="USD, NGN, etc." required /></label><label>Date<input name="donation_date" type="date" required /></label><label>Method<input name="method" placeholder="Cash App, bank transfer, cash" required /></label><label>Reference (optional)<input name="reference" /></label><label>Notes (optional)<textarea name="notes" rows={3} /></label><button className="button" disabled={pending} type="submit">{pending ? "Sending…" : "Confirm donation"}</button>{state.message && <p className={state.ok ? "form-success" : "form-error"} role="status">{state.message}</p>}</form>; }
