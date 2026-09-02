@@ -1,5 +1,6 @@
 "use server";
 import { createRootedSupabaseServerClient } from "@/lib/supabase/rooted";
+import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 
 const tables = new Set(["programmes", "projects", "events", "posts", "gallery_items"]);
 export type ContentActionState = { ok: boolean; message: string };
