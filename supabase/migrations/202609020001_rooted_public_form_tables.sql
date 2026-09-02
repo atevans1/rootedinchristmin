@@ -1,0 +1,16 @@
+do $$ begin create type rooted_in_christ.review_status as enum ('new','under_review','approved','declined','closed'); exception when duplicate_object then null; end $$;
+create table if not exists rooted_in_christ.contact_enquiries (id uuid primary key default gen_random_uuid(), full_name text not null, email text not null, subject text, message text not null, status rooted_in_christ.review_status not null default 'new', created_at timestamptz not null default now());
+create table if not exists rooted_in_christ.volunteer_applications (id uuid primary key default gen_random_uuid(), full_name text not null, email text not null, phone text, location text, skills text, availability text, areas_of_interest text, profession text, preferred_programme text, previous_experience text, additional_notes text, status rooted_in_christ.review_status not null default 'new', created_at timestamptz not null default now());
+create table if not exists rooted_in_christ.partnership_enquiries (id uuid primary key default gen_random_uuid(), organisation_name text not null, contact_name text, email text not null, phone text, partnership_type text, area_of_interest text, message text not null, status rooted_in_christ.review_status not null default 'new', created_at timestamptz not null default now());
+alter table rooted_in_christ.contact_enquiries enable row level security;
+alter table rooted_in_christ.volunteer_applications enable row level security;
+alter table rooted_in_christ.partnership_enquiries enable row level security;
+grant usage on schema rooted_in_christ to anon, authenticated;
+grant insert on rooted_in_christ.contact_enquiries, rooted_in_christ.volunteer_applications, rooted_in_christ.partnership_enquiries to anon, authenticated;
+grant select, update on rooted_in_christ.contact_enquiries, rooted_in_christ.volunteer_applications, rooted_in_christ.partnership_enquiries to authenticated;
+create policy "public submit contact" on rooted_in_christ.contact_enquiries for insert to anon, authenticated with check (true);
+create policy "public submit volunteer" on rooted_in_christ.volunteer_applications for insert to anon, authenticated with check (true);
+create policy "public submit partnership" on rooted_in_christ.partnership_enquiries for insert to anon, authenticated with check (true);
+create policy "members read contact" on rooted_in_christ.contact_enquiries for select to authenticated using (exists (select 1 from rooted_in_christ.members m where m.user_id = auth.uid() and m.status = 'active'));
+create policy "members read volunteer" on rooted_in_christ.volunteer_applications for select to authenticated using (exists (select 1 from rooted_in_christ.members m where m.user_id = auth.uid() and m.status = 'active'));
+create policy "members read partnership" on rooted_in_christ.partnership_enquiries for select to authenticated using (exists (select 1 from rooted_in_christ.members m where m.user_id = auth.uid() and m.status = 'active'));
