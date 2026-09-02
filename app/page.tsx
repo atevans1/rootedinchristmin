@@ -2,10 +2,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { Icon } from "@/components/icon";
 import { programmeCards } from "@/lib/site-content";
-import { publishedRows } from "@/lib/rooted-content";
+import { publishedRows, publicMediaUrl } from "@/lib/rooted-content";
 
 export default async function Home() {
   const stories = (await publishedRows("posts")).slice(0, 4);
+  const gallery = (await publishedRows("gallery_items")).slice(0, 4);
   return (
     <main id="main-content">
       <section className="hero">
@@ -51,6 +52,7 @@ export default async function Home() {
       </section>
 
       {stories.length > 0 && <section className="stories section muted-section"><div className="container"><div className="section-heading"><div><p className="eyebrow">Latest from the ministry</p><h2>Stories and updates</h2></div><Link className="arrow-link" href="/stories">Read the blog <Icon name="arrow" size={18} /></Link></div><div className="card-grid">{stories.map((story) => <article className="programme-card" key={String(story.id)}><p className="card-kicker">{String(story.category || "Ministry update")}</p><h3>{String(story.title)}</h3><p>{String(story.content || "")}</p><Link href="/stories">Read story <Icon name="arrow" size={17} /></Link></article>)}</div></div></section>}
+      {gallery.length > 0 && <section className="gallery section"><div className="container"><div className="section-heading"><div><p className="eyebrow">From the gallery</p><h2>Moments from ministry life</h2></div><Link className="arrow-link" href="/gallery">View gallery <Icon name="arrow" size={18} /></Link></div><div className="gallery-grid">{gallery.map((item) => <article className="gallery-card" key={String(item.id)}>{publicMediaUrl(String(item.storage_path || "")) ? <img className="gallery-image" src={publicMediaUrl(String(item.storage_path || ""))} alt={String(item.title || "Ministry moment")} /> : <div className="gallery-placeholder"><Icon name="sprout" size={38} /></div>}<div className="gallery-card-copy"><h3>{String(item.title || "Ministry moment")}</h3><p>{String(item.caption || "")}</p></div></article>)}</div></div></section>}
 
       <section className="cta-band"><div className="container"><div><p className="eyebrow light">Stay connected</p><h2>Hope grows when we grow together.</h2></div><Link className="button button-gold" href="/contact">Contact the ministry <Icon name="arrow" size={18} /></Link></div></section>
     </main>
