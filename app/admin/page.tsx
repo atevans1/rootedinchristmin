@@ -4,7 +4,6 @@ import { Icon } from "@/components/icon";
 const modules = [
   ["Stories & posts", "Publish ministry stories and blog posts", "content_manager", "/admin/content/stories"],
   ["Gallery", "Publish and manage gallery images", "content_manager", "/admin/content/gallery"],
-  ["Enquiries", "Review private contact and partnership messages", "ministry_admin", "/admin/enquiries"],
 ];
 
 export default function AdminPage() {
