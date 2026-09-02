@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { Icon } from "@/components/icon";
 
+export const dynamic = "force-dynamic";
+
 const modules = [
   ["Stories & posts", "Publish ministry stories and blog posts", "content_manager", "/admin/content/stories"],
   ["Gallery", "Publish and manage gallery images", "content_manager", "/admin/content/gallery"],
