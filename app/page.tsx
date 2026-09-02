@@ -2,8 +2,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { Icon } from "@/components/icon";
 import { programmeCards } from "@/lib/site-content";
+import { publishedRows } from "@/lib/rooted-content";
 
-export default function Home() {
+export default async function Home() {
+  const stories = (await publishedRows("posts")).slice(0, 4);
   return (
     <main id="main-content">
       <section className="hero">
@@ -47,6 +49,8 @@ export default function Home() {
           <div><p className="eyebrow">Take your next step</p><h2>Everyone has something meaningful to contribute.</h2><p>Whether you want to volunteer your skills, build a partnership, support the mission, or request assistance, we are creating clear and respectful ways to connect.</p><div className="action-links"><Link href="/get-involved">Volunteer or partner <Icon name="arrow" size={18} /></Link><Link href="/give">Support the mission <Icon name="arrow" size={18} /></Link><Link href="/assistance">Request assistance <Icon name="arrow" size={18} /></Link></div></div>
         </div>
       </section>
+
+      {stories.length > 0 && <section className="stories section muted-section"><div className="container"><div className="section-heading"><div><p className="eyebrow">Latest from the ministry</p><h2>Stories and updates</h2></div><Link className="arrow-link" href="/stories">Read the blog <Icon name="arrow" size={18} /></Link></div><div className="card-grid">{stories.map((story) => <article className="programme-card" key={String(story.id)}><p className="card-kicker">{String(story.category || "Ministry update")}</p><h3>{String(story.title)}</h3><p>{String(story.content || "")}</p><Link href="/stories">Read story <Icon name="arrow" size={17} /></Link></article>)}</div></div></section>}
 
       <section className="cta-band"><div className="container"><div><p className="eyebrow light">Stay connected</p><h2>Hope grows when we grow together.</h2></div><Link className="button button-gold" href="/contact">Contact the ministry <Icon name="arrow" size={18} /></Link></div></section>
     </main>
