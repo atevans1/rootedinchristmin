@@ -1,0 +1,5 @@
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import { createRootedSupabaseServerClient } from "@/lib/supabase/rooted";
+export const dynamic = "force-dynamic";
+export default async function StoryDetailPage({ params }: { params: Promise<{ slug: string }> }) { const { slug } = await params; const supabase = await createRootedSupabaseServerClient(); const { data } = supabase ? await supabase.from("posts").select("title,category,content,published_at").eq("slug", slug).eq("status", "published").maybeSingle() : { data: null }; if (!data) notFound(); return <main id="main-content" className="simple-page"><section className="page-hero"><div className="container"><p className="eyebrow light">{String(data.category || "Ministry update")}</p><h1>{String(data.title)}</h1><p>{data.published_at ? new Date(String(data.published_at)).toLocaleDateString() : "Rooted In Christ Ministry"}</p></div></section><article className="container legal-content"><p className="lead">{String(data.content)}</p><Link href="/stories" className="arrow-link">Back to stories</Link></article></main>; }
