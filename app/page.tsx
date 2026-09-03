@@ -39,7 +39,7 @@ export default async function Home() {
 
       <section className="impact section">
         <div className="container impact-panel">
-          <div><p className="eyebrow light">Projects & impact</p><h2>Accountable service.<br />Stories that matter.</h2><p>Project outcomes and impact figures will only appear after they have been verified and published by authorised ministry administrators.</p><Link className="button button-cream" href="/projects">Explore projects <Icon name="arrow" size={18} /></Link></div>
+          <div><p className="eyebrow light">Projects & impact</p><h2>Accountable service.<br />Stories that matter.</h2><p>Project outcomes and impact figures appears after they have been verified and published by authorised ministry administrators.</p><Link className="button button-cream" href="/projects">Explore projects <Icon name="arrow" size={18} /></Link></div>
           <div className="impact-principles"><div><strong>01</strong><span><b>Dignity first</b><small>People are never reduced to statistics.</small></span></div><div><strong>02</strong><span><b>Verified reporting</b><small>No invented outcomes or inflated claims.</small></span></div><div><strong>03</strong><span><b>Responsible stewardship</b><small>Clear, accountable programme records.</small></span></div></div>
         </div>
       </section>

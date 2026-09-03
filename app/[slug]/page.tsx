@@ -6,9 +6,9 @@ import { programmeCategories, publicPages } from "@/lib/site-content";
 
 type Props = { params: Promise<{ slug: string }> };
 const legalPages: Record<string, { title: string; description: string }> = {
-  privacy: { title: "Privacy policy", description: "A ministry-approved privacy policy will be published here before personal information is collected." },
-  safeguarding: { title: "Safeguarding policy", description: "The ministry's approved safeguarding commitments and reporting process will be published here." },
-  terms: { title: "Terms and conditions", description: "Approved website terms will be published here before operational services are launched." },
+  privacy: { title: "Privacy policy", description: "A ministry-approved privacy policy is shared here before personal information is collected." },
+  safeguarding: { title: "Safeguarding policy", description: "The ministry's approved safeguarding commitments and reporting process is shared here." },
+  terms: { title: "Terms and conditions", description: "Approved website terms is shared here before operational services are launched." },
 };
 
 export function generateStaticParams() { return [...Object.keys(publicPages), ...Object.keys(legalPages)].map((slug) => ({ slug })); }
