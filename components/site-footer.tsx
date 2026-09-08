@@ -9,7 +9,7 @@ export function SiteFooter() {
         <div className="footer-intro">
           <Link href="/" className="brand brand-footer"><span className="brand-mark"><Icon name="sprout" size={27} /></span><span><strong>Rooted In Christ</strong><small>Ministry</small></span></Link>
           <p>A Christian ministry committed to spiritual growth, compassionate service, and flourishing communities.</p>
-          <span className="content-note">Official contact and registration information will be added after verification.</span>
+          <span className="content-note">Contact the ministry at RootedinChristRK@gmail.com.</span>
         </div>
         <div><h2>Explore</h2>{navigation.slice(0, 4).map((item) => <Link href={item.href} key={item.href}>{item.label}</Link>)}</div>
         <div><h2>Connect</h2><Link href="/get-involved">Volunteer</Link><Link href="/give">Give</Link><Link href="/assistance">Request assistance</Link><Link href="/contact">Contact</Link></div>
