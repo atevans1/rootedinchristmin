@@ -5,9 +5,9 @@ import { createSupabaseServerClient } from "@/lib/supabase/server";
 export const dynamic = "force-dynamic";
 
 const modules = [
-  ["Stories & posts", "Publish ministry stories and blog posts", "content_manager", "/admin/content/stories"],
-  ["Gallery", "Publish and manage gallery images", "content_manager", "/admin/content/gallery"],
-  ["Submissions", "Review contact, volunteer, and partnership forms", "ministry_admin", "/admin/enquiries"],
+  ["Stories & posts", "Publish ministry stories and blog posts", "ministry_user", "/admin/content/stories"],
+  ["Gallery", "Publish and manage gallery images", "ministry_user", "/admin/content/gallery"],
+  ["Submissions", "Review contact, volunteer, and partnership forms", "ministry_user", "/admin/enquiries"],
 ];
 
 export default async function AdminPage() {
