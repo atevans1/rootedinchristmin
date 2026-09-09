@@ -9,7 +9,7 @@ export async function inviteAdministrator(_previous: InvitationState, formData: 
   if (!supabase || !admin) return { ok: false, message: "Invitation service is not configured." };
   const { data: { user } } = await supabase.auth.getUser(); if (!user) return { ok: false, message: "Please sign in again." };
   const { data: role, error: roleError } = await supabase.rpc("rooted_in_christ_member_role");
-  if (roleError || role !== "owner") return { ok: false, message: "Only the ministry owner can invite administrators." };
+  if (roleError || role !== "owner") return { ok: false, message: "Only the Owner can invite ministry users." };
   const { data: invited, error } = await admin.auth.admin.inviteUserByEmail(email, {
     redirectTo: "https://www.rootedinchristmin.com/admin/login",
   });

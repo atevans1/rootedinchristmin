@@ -8,7 +8,7 @@ export function AdminInvitationForm() {
   const [state, action, pending] = useActionState(inviteAdministrator, initial);
   return <form className="contact-form" action={action}>
     <label>Client email<input name="email" type="email" required maxLength={254} autoComplete="email" /></label>
-    <button className="button" type="submit" disabled={pending}>{pending ? "Sending invitation…" : "Send administrator invitation"}</button>
+    <button className="button" type="submit" disabled={pending}>{pending ? "Sending invitation…" : "Send ministry user invitation"}</button>
     {state.message && <p className={state.ok ? "form-success" : "form-error"} role="status">{state.message}</p>}
   </form>;
 }
