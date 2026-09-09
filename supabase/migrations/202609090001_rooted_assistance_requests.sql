@@ -1,0 +1,10 @@
+do $$ begin create type rooted_in_christ.review_status as enum ('new','under_review','approved','declined','closed'); exception when duplicate_object then null; end $$;
+create table if not exists rooted_in_christ.assistance_requests (id uuid primary key default gen_random_uuid(), request_type text not null, full_name text not null, email text, phone text, location text, details text not null, status rooted_in_christ.review_status not null default 'new', created_at timestamptz not null default now());
+alter table rooted_in_christ.assistance_requests enable row level security;
+grant usage on schema rooted_in_christ to anon, authenticated;
+grant insert on rooted_in_christ.assistance_requests to anon, authenticated;
+grant select, update, delete on rooted_in_christ.assistance_requests to authenticated;
+create policy "public submit assistance" on rooted_in_christ.assistance_requests for insert to anon, authenticated with check (true);
+create policy "members read assistance" on rooted_in_christ.assistance_requests for select to authenticated using (exists (select 1 from rooted_in_christ.members m where m.user_id = auth.uid() and m.status = 'active'));
+create policy "members update assistance" on rooted_in_christ.assistance_requests for update to authenticated using (exists (select 1 from rooted_in_christ.members m where m.user_id = auth.uid() and m.status = 'active')) with check (exists (select 1 from rooted_in_christ.members m where m.user_id = auth.uid() and m.status = 'active'));
+create policy "members delete assistance" on rooted_in_christ.assistance_requests for delete to authenticated using (exists (select 1 from rooted_in_christ.members m where m.user_id = auth.uid() and m.status = 'active'));
