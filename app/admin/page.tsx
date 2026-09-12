@@ -14,7 +14,7 @@ export default async function AdminPage() {
   const supabase = await createSupabaseServerClient();
   const { data: role } = supabase ? await supabase.rpc("rooted_in_christ_member_role") : { data: null };
   const isOwner = role === "owner" || role === "super_admin";
-  const allModules = isOwner ? [...modules, ["Users & access", "Invite and manage Ministry users", "owner", "/admin/users"]] : modules;
+  const allModules = [...modules, ["Users & access", "Invite and manage Ministry users (Owner only)", "owner", "/admin/users"]];
   return <main id="main-content" className="admin-shell">
     <div className="admin-topbar"><div className="container admin-topbar-inner"><Link href="/" className="admin-brand"><span className="brand-mark"><Icon name="sprout" size={23} /></span><span><strong>Rooted In Christ</strong><small>Ministry administration</small></span></Link><nav aria-label="Admin navigation" className="admin-nav"><Link href="/admin/enquiries">Submissions</Link>{isOwner && <Link href="/admin/users">Users & access</Link>}<Link href="/admin/logout">Sign out</Link></nav><span className="admin-status">Secure workspace</span></div></div>
     <div className="container admin-content"><div className="admin-heading"><div><p className="eyebrow">Administration</p><h1>Good stewardship starts with clear records.</h1><p>Manage verified ministry content and private operational records from one secure workspace.</p></div><Link href="/" className="arrow-link">View public site <Icon name="arrow" size={18} /></Link></div>
