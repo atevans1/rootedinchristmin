@@ -4,7 +4,7 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   reactStrictMode: true,
   experimental: {
-    serverActions: { bodySizeLimit: "6mb" },
+    serverActions: { bodySizeLimit: "25mb" },
   },
   images: {
     formats: ["image/avif", "image/webp"],
