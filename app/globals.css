@@ -135,7 +135,8 @@ h1,h2,h3 { font-family:var(--font-serif),serif; font-weight:500; line-height:1.0
 .gallery-filter span { border:1px solid var(--line); padding:9px 15px; border-radius:30px; font-size:12px; color:var(--muted); }
 .gallery-filter span.active { background:var(--forest); border-color:var(--forest); color:#fff; }
 .gallery-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:18px; }
-.gallery-card { background:var(--cream); border:1px solid var(--line); }
+.gallery-card { background:var(--cream); border:1px solid var(--line); overflow:hidden; }
+.gallery-image { display:block; width:100%; aspect-ratio:4 / 3; height:auto; object-fit:cover; object-position:center; }
 .gallery-placeholder { min-height:245px; display:grid; place-items:center; color:#a99b70; background:linear-gradient(135deg,#e5e4d7,#d5dfd1); }
 .gallery-card-copy { padding:20px 23px 24px; }
 .gallery-card-copy>span { color:#8c743c; font-size:10px; text-transform:uppercase; letter-spacing:.14em; font-weight:800; }
