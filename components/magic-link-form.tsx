@@ -1,0 +1,4 @@
+"use client";
+import { useActionState } from "react";
+import { sendMagicLink } from "@/app/admin/login/actions";
+export function MagicLinkForm() { const [message, action, pending] = useActionState(sendMagicLink, ""); return <form className="admin-login-form" action={action}><label>Email<input name="email" type="email" required autoComplete="email" /></label><button className="button" disabled={pending} type="submit">{pending ? "Sending…" : "Email me a sign-in link"}</button>{message && <p className={message.startsWith("If") ? "form-success" : "form-error"} role="status">{message}</p>}</form>; }

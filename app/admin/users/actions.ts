@@ -11,7 +11,7 @@ export async function inviteAdministrator(_previous: InvitationState, formData: 
   const { data: role, error: roleError } = await supabase.rpc("rooted_in_christ_member_role");
   if (roleError || role !== "owner") return { ok: false, message: "Only the Owner can invite ministry users." };
   const { data: invited, error } = await admin.auth.admin.inviteUserByEmail(email, {
-    redirectTo: "https://www.rootedinchristmin.com/admin/login",
+    redirectTo: "https://www.rootedinchristmin.com/auth/callback?next=/admin/reset-password",
   });
   if (error || !invited.user) return { ok: false, message: `We could not send the invitation: ${error?.message || "Supabase returned no invited user."}` };
   const { error: membershipError } = await admin.schema("rooted_in_christ").from("members").upsert({ user_id: invited.user.id, role: "ministry_admin", status: "invited" }, { onConflict: "user_id" });
