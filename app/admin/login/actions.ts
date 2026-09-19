@@ -18,12 +18,3 @@ export async function requestPasswordReset(_previous: string, formData: FormData
   const { error } = await supabase.auth.resetPasswordForEmail(email, { redirectTo: "https://www.rootedinchristmin.com/auth/callback?next=/admin/reset-password" });
   return error ? "We could not send a reset email. Please try again." : "If that account exists, a password reset email has been sent.";
 }
-
-export async function sendMagicLink(_previous: string, formData: FormData) {
-  const email = String(formData.get("email") || "").trim();
-  if (!/^\S+@\S+\.\S+$/.test(email)) return "Enter a valid email address.";
-  const supabase = await createSupabaseServerClient();
-  if (!supabase) return "Secure authentication is not configured yet.";
-  const { error } = await supabase.auth.signInWithOtp({ email, options: { emailRedirectTo: "https://www.rootedinchristmin.com/auth/callback?next=/admin" } });
-  return error ? "We could not send a sign-in link. Please try again." : "If that account exists, a secure sign-in link has been sent.";
-}

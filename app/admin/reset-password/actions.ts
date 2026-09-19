@@ -8,6 +8,8 @@ export async function updateAdminPassword(_previous: string, formData: FormData)
   if (password !== confirm) return "Passwords do not match.";
   const supabase = await createSupabaseServerClient();
   if (!supabase) return "Secure authentication is not configured yet.";
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) return "This reset link has expired. Request a new password reset email.";
   const { error } = await supabase.auth.updateUser({ password });
   if (error) return "We could not update your password. Request a new reset email.";
   redirect("/admin/login?reset=success");
