@@ -56,7 +56,7 @@ export const publicPages: Record<string, { eyebrow: string; title: string; descr
   "get-involved": { eyebrow: "Get involved", title: "There is a place for you to serve", description: "Discover future opportunities to volunteer, partner, support a programme, or stand with the ministry in prayer." },
   stories: { eyebrow: "Stories", title: "Hope taking root", description: "This is a place for approved ministry news, testimonies, outreach reports, and project updates shared with care and consent." },
   gallery: { eyebrow: "Impact gallery", title: "Moments of faith and service", description: "See approved images from ministry activities, community service, training, and gatherings, shared with consent." },
-  give: { eyebrow: "Give", title: "Support the mission with confidence", description: "Giving is handled responsibly and manually. Verified payment-app details will be added when officially approved by the ministry." },
-  assistance: { eyebrow: "Request assistance", title: "A private path to ask for support", description: "A secure, confidential assistance-request workflow will be implemented in a later phase. Requests will never be published automatically." },
+  give: { eyebrow: "Give", title: "Support the mission with confidence", description: "Giving is handled responsibly and manually through the verified Cash App option on our Give page." },
+  assistance: { eyebrow: "Request assistance", title: "A private path to ask for support", description: "Submit a private assistance request and the ministry team will review it confidentially. Requests are never published automatically." },
   contact: { eyebrow: "Contact", title: "We would be glad to hear from you", description: "Reach out with a general question about the ministry, its programmes, volunteering, partnership, or giving." },
 };
