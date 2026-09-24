@@ -1,12 +1,17 @@
 import Link from "next/link";
 import { Icon } from "@/components/icon";
 import { galleryCategories } from "@/lib/gallery";
-import { publishedGalleryItems, publicMediaUrl } from "@/lib/rooted-content";
+import { publishedRows, publicMediaUrl } from "@/lib/rooted-content";
 
 export const metadata = { title: "Impact Gallery", description: "Moments of faith and service from Rooted In Christ Ministry." };
 export const dynamic = "force-dynamic";
 
 export default async function GalleryPage() {
-  const gallery = await publishedGalleryItems();
+  const gallery = (await publishedRows("gallery_items")).map((row) => ({
+    title: String(row.title || "Ministry moment"),
+    category: String(row.category || "Ministry gallery"),
+    state: String(row.caption || "Published ministry image"),
+    storagePath: String(row.storage_path || row.image_path || row.path || ""),
+  }));
   return <main id="main-content" className="simple-page"><section className="page-hero"><div className="container"><p className="eyebrow light">Impact gallery</p><h1>Moments of faith and service.</h1><p>Published ministry images are shared with consent, context, and care for the dignity of every person represented.</p></div></section><section className="container gallery-page"><div className="gallery-intro"><div><p className="eyebrow">The gallery</p><h2>Stories carried in pictures.</h2></div><p>Published images from Rooted In Christ Ministry activities and community service.</p></div><div className="gallery-filter" aria-label="Gallery categories">{galleryCategories.map((category) => <span key={category} className={category === "All moments" ? "active" : ""}>{category}</span>)}</div>{gallery.length ? <div className="gallery-grid">{gallery.map((item) => { const imageUrl = publicMediaUrl(item.storagePath); return <article className="gallery-card" key={`${item.title}-${item.storagePath}`}>{imageUrl && <img className="gallery-image" src={imageUrl} alt={item.title} /> }<div className="gallery-card-copy"><span>{item.category}</span><h3>{item.title}</h3><p>{item.state}</p></div></article>; })}</div> : <div className="gallery-empty"><div className="empty-mark"><Icon name="sprout" size={31} /></div><p className="eyebrow">Gallery</p><h3>No ministry moments have been published yet.</h3><p>New images will appear here when an authorised ministry user publishes them.</p><Link href="/contact" className="arrow-link">Contact the ministry <Icon name="arrow" size={18} /></Link></div>}<div className="gallery-note"><strong>Media safeguard</strong><p>Every public image is shared only after authorised review, appropriate consent, and publication.</p><Link href="/contact" className="arrow-link">Contact the ministry <Icon name="arrow" size={18} /></Link></div></section></main>;
 }
