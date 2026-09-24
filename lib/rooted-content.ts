@@ -24,5 +24,7 @@ export async function publishedGalleryItems() {
 
 export function publicMediaUrl(path: string) {
   const base = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  return base && path ? `${base}/storage/v1/object/public/ministry-media/${path}` : "";
+  if (!base || !path) return "";
+  const safePath = path.split("/").filter(Boolean).map((segment) => encodeURIComponent(segment)).join("/");
+  return `${base.replace(/\/$/, "")}/storage/v1/object/public/ministry-media/${safePath}`;
 }
