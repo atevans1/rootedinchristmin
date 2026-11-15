@@ -4,6 +4,7 @@ export const navigation = [
   { label: "Programmes", href: "/programmes" },
   { label: "Projects & Impact", href: "/projects" },
   { label: "Get Involved", href: "/get-involved" },
+  { label: "Africa Partnerships", href: "/africa-partnerships" },
   { label: "Stories", href: "/stories" },
   { label: "Gallery", href: "/gallery" },
 ];
@@ -60,3 +61,4 @@ export const publicPages: Record<string, { eyebrow: string; title: string; descr
   assistance: { eyebrow: "Request assistance", title: "A private path to ask for support", description: "Submit a private assistance request and the ministry team will review it confidentially. Requests are never published automatically." },
   contact: { eyebrow: "Contact", title: "We would be glad to hear from you", description: "Reach out with a general question about the ministry, its programmes, volunteering, partnership, or giving." },
 };
+
